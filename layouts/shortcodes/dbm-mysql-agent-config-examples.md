@@ -39,6 +39,38 @@ instances:
     [...]
 ```
 
+Docker example for one agent connecting to multiple hosts.
+
+```yaml
+FROM gcr.io/datadoghq/agent:7.36.1
+
+LABEL "com.datadoghq.ad.check_names"='["mysql", "mysql", "mysql"]'
+LABEL "com.datadoghq.ad.init_configs"='[{}, {}, {}]'
+LABEL "com.datadoghq.ad.instances"='[
+    {
+        "dbm": true, 
+        "host": "<AWS_INSTANCE_ENDPOINT_0>", 
+        "port": 3306,
+        "username": "datadog",
+        "password": "<UNIQUEPASSWORD>"
+    },
+    {
+        "dbm": true, 
+        "host": "<AWS_INSTANCE_ENDPOINT_1>", 
+        "port": 3306,
+        "username": "datadog",
+        "password": "<UNIQUEPASSWORD>"
+    },
+    {
+        "dbm": true, 
+        "host": "<AWS_INSTANCE_ENDPOINT_2>", 
+        "port": 3306,
+        "username": "datadog",
+        "password": "<UNIQUEPASSWORD>"
+    }
+]'
+```
+
 ### Storing passwords securely
 While it is possible to declare passwords directly in the Agent configuration files, it is a more secure practice to encrypt and store database credentials elsewhere using secret management software such as [Vault](https://www.vaultproject.io/). The Agent is able to read these credentials using the `ENC[]` syntax. Review the [secrets management documentation](/agent/guide/secrets-management/) for the required setup to store these credentials. The following example shows how to declare and use those credentials:
 ```yaml
