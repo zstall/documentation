@@ -50,21 +50,21 @@ LABEL "com.datadoghq.ad.instances"='[
     {
         "dbm": true, 
         "host": "<AWS_INSTANCE_ENDPOINT_0>", 
-        "port": 3306,
+        "port": <PORT>,
         "username": "datadog",
         "password": "<UNIQUEPASSWORD>"
     },
     {
         "dbm": true, 
         "host": "<AWS_INSTANCE_ENDPOINT_1>", 
-        "port": 3306,
+        "port": <PORT>,
         "username": "datadog",
         "password": "<UNIQUEPASSWORD>"
     },
     {
         "dbm": true, 
         "host": "<AWS_INSTANCE_ENDPOINT_2>", 
-        "port": 3306,
+        "port": <PORT>,
         "username": "datadog",
         "password": "<UNIQUEPASSWORD>"
     }
